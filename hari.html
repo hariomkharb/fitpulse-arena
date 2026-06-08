@@ -1,0 +1,43 @@
+<script>    
+// 1. "Get Started" button ke liye scroll function
+function scrollToPlans() {
+    const plansSection = document.getElementById('plans');
+    if (plansSection) {
+        plansSection.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        console.error("Error: 'plans' section nahi mila!");
+    }
+}
+
+// 2. Form Submission Logic
+const myForm = document.getElementById('gymForm');
+if (myForm) {
+    myForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Page refresh hone se rokta hai
+        
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+
+        if (name.trim() === "") {
+            alert("Kripya apna naam bharein.");
+        } else {
+            // User ko personalized message dikhana
+            alert("Dhanyawad " + name + "! FitPulse Arena mein aapka swagat hai. Hum jald hi aapse sampark karenge.");
+            this.reset(); // Form clear karne ke liye
+        }
+    });
+}
+
+// 3. "Join Now" buttons ke liye dynamic event (Optional but clean approach)
+// Agar aapne HTML mein onclick="scroll..." likh diya hai toh ye niche wala part skip kar sakte hain
+document.querySelectorAll('.btn').forEach(button => {
+    if (button.innerText === "Join Now") {
+        button.addEventListener('click', function() {
+            const registerSection = document.getElementById('register');
+            if (registerSection) {
+                registerSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+});
+</script>
